@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posting to sub_forum</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1d8a99;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #007f8a;
+      }
+
+      h1 {
+        font-size: 16px;
+        color: white;
+        margin: 0;
+      }
+
+      .user-info {
+        color: black;
+        display: flex;
+        align-items: center;
+      }
+
+      .user-info i {
+        margin-right: 5px;
+      }
+
+      .posting {
+        border-radius: 10px;
+        position: relative;
+        width: 40%;
+        background-color: #d9d9d9;
+        height: 50px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+      }
+      .small-rectangle {
+        width: 40%;
+        height: 70px;
+        background-color: #ed860c;
+        text-align: center;
+        line-height: 70px;
+        color: rgb(8, 0, 0);
+        font-size: 14px;
+        position: relative;
+        border-radius: 10px;
+      }
+      .rectangle {
+        position: relative;
+        width: 80%;
+        background-color: #d9d9d9;
+        height: 150px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .create {
+        width: 30%;
+        height: 50px;
+        background-color: #ed860c;
+        text-align: center;
+        line-height: 50px;
+        color: rgb(8, 0, 0);
+        font-size: 12px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>TextHub</h1>
+      <span class="user-info"><i>👤</i>King</span>
+    </div>
+    <div class="posting">Posting to t/hw</div>
+    <div class="rectangle">
+      Need Help With My Calculus Homework!
+
+      <div class="small-rectangle">Enter description here</div>
+      <div class="create">Create post</div>
+    </div>
+  </body>
+</html>
