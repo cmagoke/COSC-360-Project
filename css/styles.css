@@ -1,0 +1,112 @@
+h1, h2, p, body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #d9d9d9;
+}
+#header{
+    background-color: #1D8A99;
+    height: 134px;
+    color: white;
+    padding-left: 2em;
+    display: flex;
+    align-items: center;
+}
+#header a{
+    color:white;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+#header input[type=search] {
+    border: none;
+    height: 50px;
+    width: 65%;
+    margin-left: 2em;
+    border-radius: 5px;;
+    font-size: 1.2em;
+    padding-left: 1em;
+}
+#header button{
+    background-color: #ed780c;
+    color:white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;;
+    margin: 0em 0.5em 0em 0.5em;
+}
+#mainbody{
+    display: flex;
+}
+#asidebody{
+    display: flex;
+    flex-direction: column;
+}
+#aside{
+    background-color: white;
+    width: 220px;
+    height: 298px;
+    margin: 2em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.subtitle{
+    background-color: #ed780c;
+    color:white;
+    width:210px;
+    height:40px;
+    border-radius: 5px 5px 0px 0px;
+    line-height: 40px;
+    vertical-align: middle;
+    padding: 0px 5px 0px 5px;
+    font-size: 1.2em;
+}
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+ul li{
+    margin: 0.5em;
+    border-bottom: 1pt solid #d9d9d9;
+}
+#main{
+    background-color: white; 
+    height: 650px;
+    margin: 2em;
+    padding: 0.3em 1em 0.3em 1em;
+    border-radius: 5px;
+    overflow: auto;
+}
+.entry{
+    border-bottom: #1D8A99 2pt solid;
+}
+.heading, .username{
+    color: #1D8A99;
+    padding: 0.3em 0em 0.3em 0em;
+}
+.title{
+    font-size: 1.8em;
+    font-weight: bold;
+}
+.entry img{
+    width:45%;
+}
+.vote_comment{
+    display: flex;
+    align-items: flex-start;
+}
+.vote_comment img{
+    height: 20px;
+    width: 20px;
+}
+.vote_comment > div{
+    margin: 0.3em;
+    color: #ed780c;
+}
