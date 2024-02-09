@@ -5,14 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Single Post</title>
     <style>
-      body {
-        background-color: #1d8a99;
+     h1, h2, p, body{
+        font-family: Arial, Helvetica, sans-serif;
       }
-      .search-box {
+     body {
+        background-color: #d9d9d9;
+      }
+      .header{
+        background-color: #1D8A99;
+        height: 134px;
+        padding: 0px;
+        color: white;
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
-        border-radius: 10px;
+        padding-left: 2em;
+        padding-right: 1em;
+      }
+      .header a{
+        color:white;
+        font-size: 1.8em;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .header button{
+        background-color: #ed780c;
+        color:white;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        height: 50px;
+        width: 100px;
+        border: none;
+        border-radius: 5px;;
+        margin: 0em 0.5em 0em 0.5em;
+      }
+      .header input[type=search] {
+        border: none;
+        height: 50px;
+        width: 65%;
+        margin-left: 2em;
+        border-radius: 5px;;
+        font-size: 1.2em;
+        padding-left: 1em;
       }
       .search-icon {
         margin-left: 10px;
@@ -28,14 +62,14 @@
       .sort-rectangle {
         position: relative;
         width: 80%;
-        background-color: #d9d9d9;
+        background-color: white;
         height: 150px;
         margin: 20px auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 20px;
+        padding-top: 2em;
         border-radius: 10px;
       }
       .time-stamp,
@@ -52,33 +86,40 @@
         right: 10px;
         color: black;
       }
+      .title{
+      font-size: 1.2em;
+      font-weight: bold;
+    }
       .help-text {
         margin-bottom: 10px;
       }
       .small-rectangle {
-        width: 40%;
+        width: 80%;
         height: 70px;
-        background-color: #ed860c;
+        background-color: white;
         text-align: center;
         line-height: 70px;
         color: rgb(8, 0, 0);
         font-size: 14px;
         position: relative;
         border-radius: 10px;
+        border: 2pt solid  #ed860c;
+        margin-top: 0.5em;
       }
       .sort-rectangle {
-        width: 30%;
-        height: 40px;
+        width: 20%;
+        height: 30px;
         background-color: #ed860c;
         color: black;
         font-size: 14px;
-        line-height: 40px;
+        line-height: 30px;
         margin-top: 30px;
         border-radius: 10px;
+        padding: 0em;
       }
       .add-comment-rectangle {
-        width: 30%;
-        height: 40px;
+        width: 20%;
+        height: 30px;
         background-color: #ed860c;
         color: black;
         font-size: 14px;
@@ -96,7 +137,7 @@
         cursor: pointer;
       }
       .comment-box {
-        background-color: #d9d9d9;
+        background-color: white;
         margin: 10px auto;
         padding: 20px;
         position: relative;
@@ -145,15 +186,16 @@
     </style>
   </head>
   <body>
-    <div class="search-box">
-      <h1>TextHub</h1>
-      <input type="text" name="search" placeholder="Search in t/hw" />
+    <div class="header">
+      <a href="#">TextHub</a>
+      <input type="search" name="search" placeholder="Search in t/hw" />
       <span class="search-icon">🔍</span>
+      <button id="logout">Log Out</button>
     </div>
     <div class="rectangle">
       <span class="time-stamp">1 day ago</span>
       <span class="user-info"><i>👤</i>King</span>
-      <div class="help-text">Need Help With My Calculus Homework!</div>
+      <div class="title">Need Help With My Calculus Homework!</div>
       <div class="small-rectangle">
         I cannot figure out Q9 from MATH 200, anyone here to help :)
       </div>
