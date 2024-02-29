@@ -117,7 +117,6 @@ body{
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 20px;
     border-top: 3px solid orange;
     
@@ -126,12 +125,13 @@ body{
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 20px;
 }
   
 .subreddit-info {
     display: flex; 
     flex-direction: column; 
+    margin-right:20px;
 }
   
 .subreddit-title {
@@ -150,6 +150,7 @@ body{
     padding: 8px 16px;
     font-size: 20px;
     border-radius: 4px;
+    margin-right: 20px;
 }
 .subreddit-navigation ul {
     list-style-type: none;
@@ -159,6 +160,8 @@ body{
 }
 .subreddit-navigation li {
     margin-right: 20px;
+    border-bottom: solid #ed780c;
+
 }
 .subreddit-navigation a {
     color: #ffffff;
