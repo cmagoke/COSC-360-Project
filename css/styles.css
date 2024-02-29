@@ -212,7 +212,7 @@ body{
 }
 #about-user{
     background-color:#ffffff;
-    width:200px;
+    width:250px;
     float:right;
     margin: 2em;
     padding: 0.3em 1em 0.3em 1em;
@@ -221,7 +221,7 @@ body{
 #user-main{
     background-color: white; 
     height: 650px;
-    width:670px;
+    width:1000px;
     margin: 2em;
     padding: 0.3em 1em 0.3em 1em;
     border-radius: 5px;
