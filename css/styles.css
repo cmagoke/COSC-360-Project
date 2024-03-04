@@ -12,10 +12,17 @@ body{
     display: flex;
     align-items: center;
 }
-#header a{
+#top-logo{
     color:white;
     text-align: center;
     font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+.sign{
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
 }
