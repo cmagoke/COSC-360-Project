@@ -1,88 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>TextHub</title>
-    <link rel="stylesheet" href="css/adminstyles.css" />
-    <script>
-      function validateForm() {
-        var username = document.getElementById("user").value;
-        var password = document.getElementById("pass").value;
-        var fullName = document.getElementById("fullname").value;
-        var dob = document.getElementById("dob").value;
-
-        if (
-          username === "" ||
-          password === "" ||
-          fullName === "" ||
-          dob === ""
-        ) {
-          alert("All fields must be filled out");
-          return false;
-        }
-
-        if (
-          password.length < 8 ||
-          !/[A-Z]/.test(password) ||
-          !/[a-z]/.test(password) ||
-          !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)
-        ) {
-          alert(
-            "Password must be at least 8 characters long, with at least 1 uppercase letter, 1 lowercase letter, and 1 special character"
-          );
-          return false;
-        }
-
-        if (/[\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(fullName)) {
-          alert("Full Name should not contain numbers or special characters");
-          return false;
-        }
-
-        var today = new Date().toISOString().slice(0, 10);
-        if (dob === today) {
-          alert("Date of Birth cannot be today's date");
-          return false;
-        }
-
-        return true;
-      }
-    </script>
-  </head>
-  <body>
+<head>
+    <meta charset="utf-8">
+   <title>TextHub</title>
+   <link rel="stylesheet" href="css/adminstyles.css" />
+</head>
+<body>
     <div id="header">
-      <a href="#">TextHub</a>
-      <input type="search" placeholder="Search" />
-      <button id="login">Log In</button>
+        <a href="homepage.html">TextHub</a>
+        <input type="search" placeholder="Search">
     </div>
     <div id="main">
-      <div class="subtitle">Sign up</div>
-      <form id="signup" onsubmit="return validateForm()">
-        <ul>
-          <li>
-            <label>Username: </label>
-            <input type="text" id="user" name="user" required /><br />
-          </li>
-
-          <li>
-            <label>Password: </label>
-            <input type="password" id="pass" name="pass" required /><br />
-          </li>
-          <li>
-            <label>Full Name: </label>
-            <input type="text" id="fullname" name="fullname" required /><br />
-          </li>
-          <li>
-            <label>Date of Birth: </label>
-            <input type="date" id="dob" name="dob" required /><br />
-          </li>
-        </ul>
-        <button type="submit" class="sign-button">Sign up</button>
-      </form>
-    </div>
+        <div class="subtitle">Sign up</div>
+        <form id="signup">
+            <ul>
+                <li>
+                    <label>Username: </label>
+                    <input type="text" id="user" name="user"><br>
+                </li>
+                    
+                <li>
+                    <label>Password: </label>
+                    <input type="text" id="pass" name="pass"><br>
+                </li>
+                <li>
+                    <label>Full Name: </label>
+                    <input type="text" id="fullname" name="fullname"><br>
+                </li>
+                <li>
+                    <label>Date of Birth: </label>
+                    <input type="date" id="dob" name="dob"><br>
+                </li>
+            </ul>
+        </form>
+    </div> 
     <div class="buttons">
-      <p>Already have an account?</p>
-      <button class="sign-button">Sign in</button>
+        <button class="sign-button">Sign up</button>
+        <p>Already have an account?</p>
+        <a href="signin.html"><button class="sign-button">Sign in</button></a>
     </div>
-    <footer></footer>
-  </body>
+    
+    
+    <footer>
+        
+    </footer>
+</body>
 </html>
