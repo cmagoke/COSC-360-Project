@@ -1,3 +1,6 @@
+<?php
+    include "db.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,29 +19,45 @@
     </div>
     <div id="enable_main">
         <div class="subtitle">Enabled Users</div>
-        <div class="entry">
-            <div class="profile"><img src="images/profile.jpg"></div>
-            <div class="info">
-                <div class="title">John Doe</div>
-                <div class="username">johndoe</div>
-                <div class="email">johndoe@gmail.com</div>
-                <div class="number">123-456-789</div>
-            </div>
-            <button id="disable">Disable</button>
-        </div>
+        <?php
+            $sql = "SELECT * FROM User";
+            $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                if($row['Disabled'] == false){
+                    echo "<div class=\"entry\">
+                    <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
+                    <div class=\"info\">
+                        <div class=\"title\">" . $row['Fullname'] . "</div>
+                        <div class=\"username\">" . $row['Username'] . "</div>
+                        <div class=\"email\">" . $row['Email'] . "</div>
+                        <div class=\"number\">" . $row['PhoneNumber'] . "</div>
+                    </div>
+                    <button id=\"disable\">Disable</button>
+                </div>";
+                }
+            }
+        ?>
     </div> 
     <div id="disable_main">
         <div class="subtitle">Disabled Users</div>
-        <div class="entry">
-            <div class="profile"><img src="images/profile.jpg"></div>
-            <div class="info">
-                <div class="title">Bob The Builder</div>
-                <div class="username">BobTheBuilder</div>
-                <div class="email">bobbuilds@gmail.com</div>
-                <div class="number">789-345-444</div>
-            </div>
-            <button id="enable">Enable</button>
-        </div>
+        <?php
+            $sql = "SELECT * FROM User";
+            $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                if($row['Disabled'] == true){
+                    echo "<div class=\"entry\">
+                    <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
+                    <div class=\"info\">
+                        <div class=\"title\">" . $row['Fullname'] . "</div>
+                        <div class=\"username\">" . $row['Username'] . "</div>
+                        <div class=\"email\">" . $row['Email'] . "</div>
+                        <div class=\"number\">" . $row['PhoneNumber'] . "</div>
+                    </div>
+                    <button id=\"enable\">Enable</button>
+                </div>";
+                }
+            }
+        ?>
     </div> 
     <footer>
         
