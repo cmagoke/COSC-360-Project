@@ -1,8 +1,15 @@
 <?php
-$servername = "localhost";
+//local
+/* $servername = "localhost";
 $username = "root";
 $password = "";
-$name = "cosc 360";
+$name = "cosc 360"; */
+
+//server
+$servername = "localhost";
+$username = "17700014";
+$password = "17700014";
+$name = "db_17700014";
 
 //create connection
 $con = new mysqli($servername, $username, $password, $name);
