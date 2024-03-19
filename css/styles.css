@@ -83,6 +83,10 @@ body{
     margin: 0.5em;
     border-bottom: 1pt solid #d9d9d9;
 }
+li>a{
+    color: black;
+    text-decoration: none;
+}
 #main{
     background-color: white; 
     height: 650px;
@@ -93,6 +97,10 @@ body{
 }
 .entry{
     border-bottom: #1D8A99 2pt solid;
+}
+.entry:hover{
+    background-color: rgb(217, 233, 238);
+    border-radius: 5px;
 }
 .heading, .username{
     color: #1D8A99;
