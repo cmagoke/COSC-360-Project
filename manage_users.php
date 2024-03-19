@@ -22,19 +22,23 @@
         <?php
             $sql = "SELECT * FROM User";
             $result = mysqli_query($con, $sql);
-            while($row = mysqli_fetch_assoc($result)){
-                if($row['Disabled'] == false){
-                    echo "<div class=\"entry\">
-                    <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
-                    <div class=\"info\">
-                        <div class=\"title\">" . $row['Fullname'] . "</div>
-                        <div class=\"username\">" . $row['Username'] . "</div>
-                        <div class=\"email\">" . $row['Email'] . "</div>
-                        <div class=\"number\">" . $row['PhoneNumber'] . "</div>
-                    </div>
-                    <button id=\"disable\">Disable</button>
-                </div>";
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    if($row['Disabled'] == false){
+                        echo "<div class=\"entry\">
+                        <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
+                        <div class=\"info\">
+                            <div class=\"title\">" . $row['Fullname'] . "</div>
+                            <div class=\"username\">" . $row['Username'] . "</div>
+                            <div class=\"email\">" . $row['Email'] . "</div>
+                            <div class=\"number\">" . $row['PhoneNumber'] . "</div>
+                        </div>
+                        <button id=\"disable\" onclick=\"disable(" . $row['UserId'] . ")\">Disable</button>
+                    </div>";
+                    }
                 }
+            }else{
+                echo "<div class=\"entry\"> No Enabled Users </div>";
             }
         ?>
     </div> 
@@ -53,7 +57,7 @@
                         <div class=\"email\">" . $row['Email'] . "</div>
                         <div class=\"number\">" . $row['PhoneNumber'] . "</div>
                     </div>
-                    <button id=\"enable\">Enable</button>
+                    <button id=\"enable\" onclick=\"enable(" . $row['UserId'] . ")\">Enable</button>
                 </div>";
                 }
             }
