@@ -1,3 +1,6 @@
+<?php
+ include "db.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,44 +20,39 @@
     </div>
     <div id="mainbody">
         <div id="aside">
-            <div class="subtitle">Trending</div>
+            <div class="subtitle">Communities</div>
             <ul class="aside-list">
-                <li class="aside-element"><a href="subforum_page.php">t/calculas</a></li>
-                <li class="aside-element"><a href="subforum_page.php">t/food</a></li>
-                <li class="aside-element"><a href="subforum_page.php">t/cars</a></li>
+                <?php
+                     $sql = "SELECT Name FROM Subforum";
+                     $result = mysqli_query($con, $sql);
+                     while($row = mysqli_fetch_assoc($result)){
+                        echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['Name'] . "</a></li>";
+                     }
+                ?>
             </ul>
         </div>
         <div id="main">
-            <div class="entry">
-                <div class="heading">t/calculus - 3 hours ago</div>
-                <div class="username">johndoe</div>
-                <div class="title">How to do intregrals!!?!?!?!</div>
-                <p>I am stuck on a intregral problem and don’t know what is the right way to approach it. I have posted a screen shot of the problem below. Any help will be appreciated !!!!</p>
-                <div class="vote_comment">
-                    <div><img class="up_arrow" src="images/up_arrow.jpg"></div>
-                    <div class="vote_count">20</div>
-                    <div><img class="down_arrow" src="images/down_arrow.jpg"></div>
-                    <div><img class="comment-icon" src="images/comment_icon.png"></div>
-                    <div class="comment_count">30</div>
-                </div>
-            </div>
-            <div class="entry">
-                <div class="heading">t/food - 2 days ago</div>
-                <div class="username">Bob The Builder</div>
-                <div class="title">Favourite food?</div>
-                <img src="images/pizza.jpg">
-                <div class="vote_comment">
-                    <div><img class="up_arrow" src="images/up_arrow.jpg"></div>
-                    <div class="vote_count">200</div>
-                    <div><img class="down_arrow" src="images/down_arrow.jpg"></div>
-                    <div><img class="comment-icon" src="images/comment_icon.png"></div>
-                    <div class="comment_count">30</div>
-                </div>
-            </div>
+                <?php
+                    $sql = "SELECT * FROM Post";
+                    $result = mysqli_query($con, $sql);
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "
+                        <div class=\"entry\" onclick=\"window.location.href='single_post.php'\">
+                        <div class=\"heading\">" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
+                        <div class=\"username\">" . $row['Username'] . "</div>
+                        <div class=\"title\">" . $row['Title'] . "</div>
+                        <p>" . $row['Description'] ."</p>
+                        <div class=\"vote_comment\">
+                            <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
+                            <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
+                            <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
+                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\"></div>
+                            <div class=\"comment_count\">". $row['CommentsNum'] . "</div>
+                        </div>
+                        </div>";
+                    }
+                ?> 
         </div>
     </div>  
-    <footer>
-        
-    </footer>
 </body>
 </html>

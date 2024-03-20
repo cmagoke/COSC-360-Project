@@ -1,10 +1,15 @@
+<?php
+    include "db.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>TextHub</title>
+   <title>TextHub Admin</title>
    <link rel="stylesheet" href="./css/adminstyles.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+   <script type="text/javascript" src="js/buttons.js"></script>
 </head>
 <body>
     <div id="header">
@@ -14,29 +19,27 @@
     </div>
     <div id="main">
         <div class="subtitle">All Posts</div>
-        <div class="entry2">
-            <div>
-                <div class="heading">t/calculus - 3 hours ago</div>
-                <div class="username">johndoe</div>
-                <div class="title">How to do intregrals!!?!?!?!</div>
-                <p>I am stuck on a intregral problem and don’t know what is the right way to approach it. I have posted a screen shot of the problem below. Any help will be appreciated !!!!</p>
-            </div>
-            <button id="edit">Edit</button>
-            <button id="delete">Delete</button>
-        </div>
-        <div class="entry2">
-            <div>
-                <div class="heading">t/food - 2 days ago</div>
-                <div class="username">BobThe Builder</div>
-                <div class="title">Favourite food?</div>
-                <img src="images/pizza.jpg">
-            </div>
-            <button id="edit">Edit</button>
-            <button id="delete">Delete</button>
-        </div>
+        <?php
+             $sql = "SELECT * FROM Post";
+             $result = mysqli_query($con, $sql);
+             if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)){
+                    echo
+                    "<div class=\"entry2\">
+                    <div>
+                        <div class=\"heading\">". $row['Subforum'] . " - " . $row['DateTime'] ."</div>
+                        <div class=\"username\">" . $row['Username'] . "</div>
+                        <div class=\"title\">" . $row['Title'] . "</div>
+                        <p>". $row['Description'] . "</p>
+                    </div>
+                    <button id=\"edit\" onclick=\"editPost(" . $row['PostId'] . ")\">Edit</button>
+                    <button id=\"delete\" onclick=\"deletePost(" . $row['PostId'] . ")\">Delete</button>
+                    </div>";
+                }
+             }else{
+                echo "<div class=\"entry2\"> No Posts Found</div>";
+             }
+        ?>
     </div> 
-    <footer>
-        
-    </footer>
 </body>
 </html>
