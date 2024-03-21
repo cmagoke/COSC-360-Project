@@ -1,5 +1,7 @@
 <?php
  include "db.php";
+
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,8 +17,26 @@
     <div id="header">
         <a href="homepage.php">TextHub</a>
         <input type="search" placeholder="Search">
-        <button id="login" onclick="window.location.href='signin.php'">Log in</button>
-        <button id="signup" onclick="window.location.href='signup.php'">Sign Up</button>
+        <?php
+             if(isset($_SESSION['user'])){
+                $userid = $_SESSION['user'];
+                $sql = "SELECT Username FROM User WHERE UserId = ?";
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param("i", $userid);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                if(!is_null($row)){
+                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
+                }else{
+                    echo "failed to get user";
+                }
+             }else{
+                echo "<button id=\"login\" onclick=\"window.location.href='signin.php'\">Log in</button>
+                <button id=\"signup\" onclick=\"window.location.href='signup.php'\">Sign Up</button>";
+             }
+        ?>
     </div>
     <div id="mainbody">
         <div id="aside">

@@ -32,10 +32,5 @@
         <p>Don't have an account yet?</p>
         <a href="signup.php"><button class="sign-button">Sign up</button></a>
     </div>
-    
-    
-    <footer>
-        
-    </footer>
 </body>
 </html>
