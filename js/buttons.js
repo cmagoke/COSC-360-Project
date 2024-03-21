@@ -1,16 +1,20 @@
 function upvote(PostId){
     $.post("handleVote.php",{postid: PostId, type: "up"}, function(response) {
-        // Handle the response from the server
-        console.log(response);
-        location.reload();
+        if(response == "not logged"){
+            alert("Please log in first");
+        }else{
+            location.reload();
+        }
     });
 }
 
 function downvote(PostId){
     $.post("handleVote.php",{postid: PostId, type: "down"}, function(response) {
-        // Handle the response from the server
-        console.log(response);
-        location.reload();
+        if(response == "not logged"){
+            alert("Please log in first");
+        }else{
+            location.reload();
+        }
     });
 }
 

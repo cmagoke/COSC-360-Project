@@ -15,7 +15,7 @@
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
         <input type="search" placeholder="Search">
-        <button id="logout" onclick="window.location.href='homepage.php'">Log Out</button>
+        <button id="logout" onclick="window.location.href='processLogout.php'">Log Out</button>
     </div>
     <div id="enable_main">
         <div class="subtitle">Enabled Users</div>
@@ -24,7 +24,7 @@
             $result = mysqli_query($con, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while($row = mysqli_fetch_assoc($result)){
-                    if($row['Disabled'] == false){
+                    if($row['Disabled'] == false && $row['UserId'] != 1){
                         echo "<div class=\"entry\">
                         <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
                         <div class=\"info\">
@@ -48,7 +48,7 @@
             $sql = "SELECT * FROM User";
             $result = mysqli_query($con, $sql);
             while($row = mysqli_fetch_assoc($result)){
-                if($row['Disabled'] == true){
+                if($row['Disabled'] == true && $row['UserId'] != 1){
                     echo "<div class=\"entry\">
                     <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
                     <div class=\"info\">

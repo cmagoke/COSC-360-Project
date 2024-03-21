@@ -15,7 +15,7 @@
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
         <input type="search" placeholder="Search">
-        <button id="logout" onclick="window.location.href='homepage.php'">Log Out</button>
+        <button id="logout" onclick="window.location.href='processLogout.php'">Log Out</button>
     </div>
     <div id="main">
         <div class="subtitle">All Posts</div>

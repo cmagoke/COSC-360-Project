@@ -1,6 +1,6 @@
 <?php
  include "db.php";
-
+ 
  session_start();
 ?>
 <!DOCTYPE html>
@@ -40,7 +40,13 @@
     </div>
     <div id="mainbody">
         <div id="aside">
-            <div class="subtitle">Communities</div>
+            <?php
+                if(isset($_SESSION['user'])){
+                    echo "<div class=\"subtitle\">Your Communities</div>";
+                }else{
+                    echo "<div class=\"subtitle\">Communities</div>";
+                }
+            ?>
             <ul class="aside-list">
                 <?php
                      $sql = "SELECT Name FROM Subforum";
@@ -57,10 +63,10 @@
                     $result = mysqli_query($con, $sql);
                     while($row = mysqli_fetch_assoc($result)){
                         echo "
-                        <div class=\"entry\" onclick=\"window.location.href='single_post.php'\">
-                        <div class=\"heading\">" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
+                        <div class=\"entry\">
+                        <div class=\"heading\" >" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
                         <div class=\"username\">" . $row['Username'] . "</div>
-                        <div class=\"title\">" . $row['Title'] . "</div>
+                        <div class=\"title\" onclick=\"window.location.href='single_post.php'\">" . $row['Title'] . "</div>
                         <p>" . $row['Description'] ."</p>
                         <div class=\"vote_comment\">
                             <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
