@@ -12,6 +12,12 @@ body{
     display: flex;
     align-items: center;
 }
+#header form{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+}
 #header a{
     color:white;
     text-align: center;
