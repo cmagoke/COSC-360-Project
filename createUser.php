@@ -17,12 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $count = $row['count'];
         if($count == 0){
+            $passwordHash = md5($password);
             $sql = "INSERT INTO User (Username, Password, Fullname, DateOfBirth, Email, PhoneNumber) VALUES (?,?,?,?,?,?)";
             $stmt = $con->prepare($sql);
-            $stmt->bind_param("ssssss", $username, $password, $fullname, $dob, $email, $phone);
+            $stmt->bind_param("ssssss", $username, $passwordHash, $fullname, $dob, $email, $phone);
             if($stmt->execute()){
                 //echo "inserted";
-                header("Location: addImage.php?user=" . $username);
+                header("Location: ImageForm.php?user=" . $username);
                 exit();
             }else{
                 echo "Error";
