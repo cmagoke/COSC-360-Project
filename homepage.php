@@ -1,6 +1,5 @@
 <?php
  include "db.php";
- 
  session_start();
 ?>
 <!DOCTYPE html>
@@ -16,7 +15,10 @@
 <body>
     <div id="header">
         <a href="homepage.php">TextHub</a>
-        <input type="search" placeholder="Search">
+        <form action="search.php" method="get">
+            <input type="search" id="search" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
         <?php
              if(isset($_SESSION['user'])){
                 $userid = $_SESSION['user'];
@@ -49,10 +51,22 @@
             ?>
             <ul class="aside-list">
                 <?php
-                     $sql = "SELECT Name FROM Subforum";
-                     $result = mysqli_query($con, $sql);
-                     while($row = mysqli_fetch_assoc($result)){
-                        echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['Name'] . "</a></li>";
+                     if(isset($_SESSION['user'])){
+                        $userid = $_SESSION['user'];
+                        $sql = "SELECT SubforumName FROM UserCom WHERE UserId = ?";
+                        $stmt = $con->prepare($sql);
+                        $stmt->bind_param("s", $userid);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        while($row = $result->fetch_assoc()){
+                            echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['SubforumName'] . "</a></li>";
+                        }
+                     }else{
+                        $sql = "SELECT Name FROM Subforum";
+                        $result = mysqli_query($con, $sql);
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['Name'] . "</a></li>";
+                        }
                      }
                 ?>
             </ul>
