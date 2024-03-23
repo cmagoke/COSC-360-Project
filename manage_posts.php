@@ -20,7 +20,10 @@
     ?>
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
-        <input type="search" placeholder="Search">
+        <form action="searchPost.php" method="get">
+            <input type="search" id="search" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
         <button id="logout" onclick="window.location.href='processLogout.php'">Log Out</button>
     </div>
     <div id="main">

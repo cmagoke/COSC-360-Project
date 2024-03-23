@@ -41,7 +41,7 @@ function editPost(PostId){
 function deletePost(PostId){
     var result = confirm("Are you sure you want to delete this post?")
     if(result){
-        $.post("handlePost.php",{postid: PostId, type: "delete"}, function(response) {
+        $.post("deletePost.php",{postid: PostId, type: "delete"}, function(response) {
             // Handle the response from the server
             console.log(response);
             location.reload();

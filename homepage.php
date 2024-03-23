@@ -29,7 +29,7 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    echo "<div id=\"user\"><a href=\"userpage.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -52,6 +52,7 @@
             <ul class="aside-list">
                 <?php
                      if(isset($_SESSION['user'])){
+                        $found = false;
                         $userid = $_SESSION['user'];
                         $sql = "SELECT SubforumName FROM UserCom WHERE UserId = ?";
                         $stmt = $con->prepare($sql);
@@ -59,7 +60,11 @@
                         $stmt->execute();
                         $result = $stmt->get_result();
                         while($row = $result->fetch_assoc()){
+                            $found = true;
                             echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['SubforumName'] . "</a></li>";
+                        }
+                        if($found == false){
+                            echo "<li>No communities joined</li>";
                         }
                      }else{
                         $sql = "SELECT Name FROM Subforum";

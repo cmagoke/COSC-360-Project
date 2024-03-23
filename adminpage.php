@@ -18,7 +18,8 @@
     ?>
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
-        <input type="search" placeholder="Search">
+        <form>
+        </form>
         <button id="logout" onclick="window.location.href='processLogout.php'">Log Out</button>
     </div>
     <div id="main">

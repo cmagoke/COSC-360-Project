@@ -19,6 +19,12 @@ body{
     font-weight: bold;
     text-decoration: none;
 }
+#header form{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+}
 #header input[type=search] {
     border: none;
     height: 50px;
@@ -38,6 +44,9 @@ button{
     border: none;
     border-radius: 5px;
     margin: 0em 0.5em 0em 0.5em;
+}
+#header button:hover{
+    background-color: #ca690f;  
 }
 #header button{
     background-color: #ed780c;  

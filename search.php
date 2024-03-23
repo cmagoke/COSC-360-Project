@@ -29,7 +29,7 @@ session_start();
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    echo "<div id=\"user\"><a href=\"userpage.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -45,6 +45,7 @@ session_start();
         $found = false;
         $found2 = false;
         if (isset($_GET['search']) && !empty(trim(($_GET['search'])))) {
+            echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
             $searchFor = '%' . $_GET['search'] . '%';
             echo "<h2>Users</h2>";
             $sql = "SELECT * From User WHERE Username LIKE ?";
@@ -96,7 +97,11 @@ session_start();
                 echo "No posts found";
             }
         }else{
-            echo "Empty search box";
+            echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
+            echo "<h2>Users</h2>";
+            echo "No users found";
+            echo "<h2>Posts</h2>";
+            echo "No posts found";
         }
         ?>
     </div>

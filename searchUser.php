@@ -1,13 +1,13 @@
 <?php
-    include "db.php";
-    session_start();
+include "db.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>TextHub Manage Users</title>
+   <title>TextHub Homepage</title>
    <link rel="stylesheet" href="./css/adminstyles.css" />
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
    <script type="text/javascript" src="js/buttons.js"></script>
@@ -26,39 +26,35 @@
         </form>
         <button id="logout" onclick="window.location.href='processLogout.php'">Log Out</button>
     </div>
-    <div id="enable_main">
-        <div class="subtitle">Enabled Users</div>
+    <div id="main">
+    <div class="subtitle">Users</div>
         <?php
-            $sql = "SELECT * FROM User";
-            $result = mysqli_query($con, $sql);
-            if (mysqli_num_rows($result) > 1) {
-                while($row = mysqli_fetch_assoc($result)){
-                    if($row['Disabled'] == false && $row['UserId'] != 1){
-                        echo "<div class=\"entry\">
-                        <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
-                        <div class=\"info\">
-                            <div class=\"title\">" . $row['Fullname'] . "</div>
-                            <div class=\"username\">" . $row['Username'] . "</div>
-                            <div class=\"email\">" . $row['Email'] . "</div>
-                            <div class=\"number\">" . $row['PhoneNumber'] . "</div>
-                        </div>
-                        <button id=\"disable\" onclick=\"disable(" . $row['UserId'] . ")\">Disable</button>
-                    </div>";
-                    }
+        $found = false;
+        $found2 = false;
+        if (isset($_GET['search']) && !empty(trim(($_GET['search'])))) {
+            echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
+            $searchFor = '%' . $_GET['search'] . '%';
+            $sql = "SELECT * From User WHERE Username LIKE ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $searchFor);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while($row = $result->fetch_assoc()){
+                if($row['Disabled'] == false && $row['UserId'] != 1){
+                    $found = true;
+                    echo "<div class=\"entry\">
+                    <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
+                    <div class=\"info\">
+                        <div class=\"title\">" . $row['Fullname'] . "</div>
+                        <div class=\"username\">" . $row['Username'] . "</div>
+                        <div class=\"email\">" . $row['Email'] . "</div>
+                        <div class=\"number\">" . $row['PhoneNumber'] . "</div>
+                    </div>
+                    <button id=\"disable\" onclick=\"disable(" . $row['UserId'] . ")\">Disable</button>
+                </div>";
                 }
-            }else{
-                //echo "hello";
-                echo "<div class=\"entry\"><div> No Enabled Users </div></div>";
-            }
-        ?>
-    </div> 
-    <div id="disable_main">
-        <div class="subtitle">Disabled Users</div>
-        <?php
-            $sql = "SELECT * FROM User";
-            $result = mysqli_query($con, $sql);
-            while($row = mysqli_fetch_assoc($result)){
                 if($row['Disabled'] == true && $row['UserId'] != 1){
+                    $found = true;
                     echo "<div class=\"entry\">
                     <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
                     <div class=\"info\">
@@ -71,10 +67,14 @@
                 </div>";
                 }
             }
+            if($found == false){
+                echo "No users found";
+            }
+        }else{
+            echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
+            echo "No users found";
+        }
         ?>
-    </div> 
-    <footer>
-        
-    </footer>
+    </div>
 </body>
 </html>
