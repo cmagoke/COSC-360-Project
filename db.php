@@ -1,18 +1,8 @@
 <?php
-//local
-/* $servername = "localhost";
-$username = "root";
-$password = "";
-$name = "cosc 360"; */
-
-//server
-$servername = "localhost";
-$username = "17700014";
-$password = "17700014";
-$name = "db_17700014";
+include "dbinfo.php";
 
 //create connection
-$con = new mysqli($servername, $username, $password, $name);
+$con = new mysqli(dbhost, dbname, dbuser, dbpass);
 
 if(mysqli_connect_error()){
     echo "Failed to connect";
