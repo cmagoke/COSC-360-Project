@@ -35,6 +35,8 @@
                    // echo "<img src=\"showImage.php?user=" . $username . "\" alt=\"Profile Picture\">";
                 
         ?> 
+        <br>
+        <a href="userpage.php">Skip</a>
     </div> 
 </body>
 </html>

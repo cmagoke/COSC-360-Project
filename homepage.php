@@ -54,7 +54,7 @@
                      if(isset($_SESSION['user'])){
                         $found = false;
                         $userid = $_SESSION['user'];
-                        $sql = "SELECT SubforumName FROM UserCom WHERE UserId = ?";
+                        $sql = "SELECT SubforumName FROM UserSubforum WHERE UserId = ?";
                         $stmt = $con->prepare($sql);
                         $stmt->bind_param("s", $userid);
                         $stmt->execute();
