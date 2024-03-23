@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +11,11 @@
    <link rel="stylesheet" href="./css/adminstyles.css" />
 </head>
 <body>
+    <?php
+        if(!isset($_SESSION['user']) || $_SESSION['user'] != 1 ){
+            header("Location: signin.php");
+        }          
+    ?>
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
         <input type="search" placeholder="Search">

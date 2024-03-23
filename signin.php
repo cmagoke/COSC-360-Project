@@ -9,7 +9,6 @@
 <body>
     <div id="header">
         <a href="homepage.php" id="top-logo">TextHub</a>
-        <input type="search" placeholder="Search">
     </div>
     <div id="main">
         <div class="subtitle">Sign up</div>

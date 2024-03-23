@@ -100,13 +100,27 @@ li>a{
 .entry{
     border-bottom: #1D8A99 2pt solid;
 }
-.entry:hover{
+.entry:hover, .entry2:hover{
     background-color: rgb(217, 233, 238);
     border-radius: 5px;
 }
-.heading, .username{
+.entry2{
+    border-bottom: #1D8A99 2pt solid;
+    display: flex;
+    align-items: center;
+}
+.profile img{
+    width: 100px;
+    height: 100px;
+}
+.heading, .username, .email, .number{
     color: #1D8A99;
     padding: 0.3em 0em 0.3em 0em;
+}
+div.info{
+    width:75%;
+    word-wrap: break-word;
+    margin-left: 1em;
 }
 .title{
     font-size: 1.8em;

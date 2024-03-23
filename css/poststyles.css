@@ -1,0 +1,90 @@
+h1, h2, p, body, textarea{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+ body {
+    background-color: #d9d9d9;
+  }
+  .header{
+    background-color: #1D8A99;
+    height: 134px;
+    padding: 0px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 2em;
+    padding-right: 1em;
+    justify-content: space-between;
+  }
+  .header a{
+    color:white;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .header button{
+    background-color: #ed780c;
+    color:white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;;
+    margin: 0em 0.5em 0em 0.5em;
+  }
+ 
+  h1 {
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 0;
+    color: white;
+  }
+  .rectangle {
+    width: 80%;
+    background-color: white;
+    height: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+    border-radius: 10px;
+  }
+ 
+  .title{
+    font-size: 1.8em;
+    font-weight: bold;
+    border: #ed860c 2pt solid;
+    width: 80%;
+    border-radius: 10px;
+  }
+  
+  .small-rectangle {
+    width: 80%;
+    height: 250px; 
+    background-color: white;
+    color: rgb(8, 0, 0);
+    font-size: 1.5em;
+    border-radius: 10px;
+    border: 2pt solid  #ed860c;
+    margin-top: 0.5em;
+    overflow: auto;
+    white-space: normal;
+}
+ 
+  #done {
+    width: 100px;
+    height: 50px;
+    background-color: #ed780c;
+    text-align: center;
+    line-height: 50px;
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    border-radius: 10px;
+    border: none;
+    margin-top: 2em;
+  }
+
+ 

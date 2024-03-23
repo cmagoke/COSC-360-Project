@@ -1,5 +1,6 @@
 <?php
     include "db.php";
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,11 @@
    <script type="text/javascript" src="js/buttons.js"></script>
 </head>
 <body>
+    <?php
+        if(!isset($_SESSION['user']) || $_SESSION['user'] != 1 ){
+            header("Location: signin.php");
+        }          
+    ?>
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
         <input type="search" placeholder="Search">

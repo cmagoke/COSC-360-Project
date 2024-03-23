@@ -44,7 +44,7 @@ session_start();
         <?php
         $found = false;
         $found2 = false;
-        if (isset($_GET['search'])) {
+        if (isset($_GET['search']) && !empty(trim(($_GET['search'])))) {
             $searchFor = '%' . $_GET['search'] . '%';
             echo "<h2>Users</h2>";
             $sql = "SELECT * From User WHERE Username LIKE ?";
@@ -55,7 +55,15 @@ session_start();
             while($row = $result->fetch_assoc()){
                 if($row['UserId'] != 1){
                     $found = true;
-                    echo $row['Username'];
+                    echo "<div class=\"entry2\">
+                        <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
+                        <div class=\"info\">
+                            <div class=\"title\">" . $row['Fullname'] . "</div>
+                            <div class=\"username\">" . $row['Username'] . "</div>
+                            <div class=\"email\">" . $row['Email'] . "</div>
+                            <div class=\"number\">" . $row['PhoneNumber'] . "</div>
+                        </div>
+                        </div>";
                 }
             }
             if($found == false){
@@ -69,11 +77,26 @@ session_start();
             $result2 = $stmt2->get_result();
             while($row = $result2->fetch_assoc()){
                 $found2 = true;
-                echo "Post: " . $row['Title'] . " User: " . $row['Username'];
+                echo "
+                    <div class=\"entry\">
+                    <div class=\"heading\" >" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
+                    <div class=\"username\">" . $row['Username'] . "</div>
+                    <div class=\"title\" onclick=\"window.location.href='single_post.php'\">" . $row['Title'] . "</div>
+                    <p>" . $row['Description'] ."</p>
+                    <div class=\"vote_comment\">
+                        <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
+                        <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
+                        <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
+                        <div><img class=\"comment-icon\" src=\"images/comment_icon.png\"></div>
+                        <div class=\"comment_count\">". $row['CommentsNum'] . "</div>
+                    </div>
+                    </div>";
             }
             if($found2 == false){
                 echo "No posts found";
             }
+        }else{
+            echo "Empty search box";
         }
         ?>
     </div>

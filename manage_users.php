@@ -1,5 +1,6 @@
 <?php
     include "db.php";
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,11 @@
    <script type="text/javascript" src="js/buttons.js"></script>
 </head>
 <body>
+    <?php
+        if(!isset($_SESSION['user']) || $_SESSION['user'] != 1 ){
+            header("Location: signin.php");
+        }          
+    ?>
     <div id="header">
         <a href="adminpage.php">TextHub Admin</a>
         <input type="search" placeholder="Search">
@@ -22,11 +28,11 @@
         <?php
             $sql = "SELECT * FROM User";
             $result = mysqli_query($con, $sql);
-            if (mysqli_num_rows($result) > 0) {
+            if (mysqli_num_rows($result) > 1) {
                 while($row = mysqli_fetch_assoc($result)){
                     if($row['Disabled'] == false && $row['UserId'] != 1){
                         echo "<div class=\"entry\">
-                        <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
+                        <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
                         <div class=\"info\">
                             <div class=\"title\">" . $row['Fullname'] . "</div>
                             <div class=\"username\">" . $row['Username'] . "</div>
@@ -38,7 +44,8 @@
                     }
                 }
             }else{
-                echo "<div class=\"entry\"> No Enabled Users </div>";
+                //echo "hello";
+                echo "<div class=\"entry\"><div> No Enabled Users </div></div>";
             }
         ?>
     </div> 
@@ -50,7 +57,7 @@
             while($row = mysqli_fetch_assoc($result)){
                 if($row['Disabled'] == true && $row['UserId'] != 1){
                     echo "<div class=\"entry\">
-                    <div class=\"profile\"><img src=\"images/profile.jpg\"></div>
+                    <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
                     <div class=\"info\">
                         <div class=\"title\">" . $row['Fullname'] . "</div>
                         <div class=\"username\">" . $row['Username'] . "</div>
