@@ -53,7 +53,7 @@
           <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -84,7 +84,7 @@
             <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
