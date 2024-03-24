@@ -69,7 +69,7 @@
                 <ul>
                     <li><a href="userpage-posts.php">Posts</a></li>
                     <li><a href="userpage-comments.php">Comments</a></li>
-                    <li>    <button id="createPost">Create Post</button></li>
+                    <li> <button id="createPost" onclick="window.location.href='posting.php'">Create Post</button></li>
                   </ul>
             </nav>
         </div>
