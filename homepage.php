@@ -29,7 +29,7 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div id=\"user\"><a href=\"userpage.php\">Hello ". $row['Username'] . "!</a></div>
+                    echo "<div id=\"user\"><a href=\"userpage-posts.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -61,7 +61,7 @@
                         $result = $stmt->get_result();
                         while($row = $result->fetch_assoc()){
                             $found = true;
-                            echo "<li class=\"aside-element\"><a href=\"subforum_page.php\">" . $row['SubforumName'] . "</a></li>";
+                            echo "<li class=\"aside-element\"><a href=\"subforum_page.php?name=" . $row['SubforumName'] .  "\">" . $row['SubforumName'] . "</a></li>";
                         }
                         if($found == false){
                             echo "<li>No communities joined</li>";
