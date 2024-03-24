@@ -30,7 +30,7 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    echo "<div id=\"user\"><a href=\"userpage-posts.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -51,7 +51,7 @@
         <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -69,9 +69,7 @@
         if(isset($_SESSION['user']) && isset($_GET['name'])){
             $forumName = $_GET['name'];
             $userid = $_SESSION['user'];
-            echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub('".$userid."','".$forumName."')\">Join</button>";
-            //"<button id=\"disable\" onclick=\"disable(" . $row['UserId'] . ")\">Disable</button>"
-            
+            echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub(".$userid.",'".$forumName."')\">Join</button>";            
         }
         ?>
 
@@ -80,7 +78,7 @@
           <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -94,7 +92,7 @@
           ?>
           </ul>
         </nav>
-        <button id="AddPostButton"><a href="posting.php">Add Post</a></button>
+        <button id="createPost" onclick="window.location.href='posting.php'">Create Post</button>
     </div>
     <div id="mainbody">
         <div id="about">
@@ -104,7 +102,7 @@
             <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -140,7 +138,7 @@
                             <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
                             <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
                             <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
-                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\"></div>
+                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\" onclick=\"window.location.href='comment.php?id=". $row['PostId'] . "'\"></div>
                             <div class=\"comment_count\">". $row['CommentsNum'] . "</div>
                         </div>
                         </div>";

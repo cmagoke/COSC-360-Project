@@ -5,9 +5,7 @@
         if(isset($_POST['userid']) && isset($_POST['forumName'])){
             $userid = $_POST['userid'];
             $forumName = $_POST['forumName'];
-            echo "$userid";
-            echo "$forumName";
-            $sql = "INSERT INTO usersubforum VALUES('$userid','$forumName')";
+            $sql = "INSERT INTO UserSubforum (UserId, SubforumName) VALUES('$userid','$forumName')";
             if (mysqli_query($con, $sql)) {
                 echo "Joined";
             }else{

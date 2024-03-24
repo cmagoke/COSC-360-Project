@@ -66,15 +66,34 @@
             }
           ?>
           </div>
-          <button class="join-button">Join</button>
+          <?php
+        if(isset($_SESSION['user']) && isset($_GET['name'])){
+            $forumName = $_GET['name'];
+            $userid = $_SESSION['user'];
+            echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub(".$userid.",'".$forumName."')\">Join</button>";            
+        }
+        ?>
         </header>
         <nav class="subreddit-navigation">
           <ul>
-            <li><a href="subforum-posts.php">Posts</a></li>
-            <li><a href="subforum-rules.php">Rules</a></li>
+          <?php
+            if(isset($_GET['name'])){
+                $forumName = $_GET['name'];
+                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param("s", $forumName);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                if(!is_null($row)){
+                    echo "<li><a href='subforum-posts.php?name=".$row['Name']."'>Posts</a></li>";
+                    echo "<li><a href='subforum-rules.php?name=".$row['Name']."'>Rules</a></li>";
+                }
+            }
+          ?>
           </ul>
         </nav>
-        <button id="AddPostButton"><a href="posting.php">Add Post</a></button>
+        <button id="createPost" onclick="window.location.href='posting.php'">Create Post</button>
     </div>
     <div id="mainbody">
         <div id="about">
