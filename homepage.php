@@ -70,7 +70,7 @@
                         $sql = "SELECT Name FROM Subforum";
                         $result = mysqli_query($con, $sql);
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<li class=\"aside-element\"><a href=\"subforum-posts.php?name=" . $row['SubforumName'] .  "\">" . $row['Name'] . "</a></li>";
+                            echo "<li class=\"aside-element\"><a href=\"subforum-posts.php?name=" . $row['Name'] .  "\">" . $row['Name'] . "</a></li>";
                         }
                      }
                 ?>
