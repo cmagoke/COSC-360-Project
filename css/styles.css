@@ -46,10 +46,22 @@ body{
     height: 50px;
     width: 100px;
     border: none;
-    border-radius: 5px;;
+    border-radius: 5px;
     margin: 0em 0.5em 0em 0.5em;
 }
-#header button:hover{
+.user-nav button{
+    background-color: #ed780c;
+    color:white;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    height: 25px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5em;
+}
+#header button:hover, .user-nav button:hover{
     background-color: #ca690f;  
 }
 #header div>h2{

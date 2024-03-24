@@ -30,7 +30,7 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    echo "<div id=\"user\"><a href=\"userpage-posts.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -69,12 +69,12 @@
                 <ul>
                     <li><a href="userpage-posts.php">Posts</a></li>
                     <li><a href="userpage-comments.php">Comments</a></li>
-                    <li><a href="">Upvoted</a></li>
-                    <li><a href="">Downvoted</a></li>
+                    <li>    <button id="createPost">Create Post</button></li>
                   </ul>
             </nav>
         </div>
     </div>
+
     <div id="about-user">
         <div class="about-title">
             <div class="profile-pic">
@@ -92,7 +92,7 @@
         </div>
         <?php
         if(!is_null($row)){
-            echo "<p>DOB: ".$row['DateOfBirth']."</p>";
+            echo "<p>Date of Birth: ".$row['DateOfBirth']."</p>";
             }
         
         ?>
@@ -135,10 +135,6 @@
         
     </div>
 
-    
-    <footer>
-        
-    </footer>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
