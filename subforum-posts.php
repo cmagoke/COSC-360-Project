@@ -70,8 +70,8 @@
         </header>
         <nav class="subreddit-navigation">
           <ul>
-            <li><a href="#">Posts</a></li>
-            <li><a href="#">Rules</a></li>
+            <li><a href="subforum-posts.php">Posts</a></li>
+            <li><a href="subforum-rules.php">Rules</a></li>
           </ul>
         </nav>
         <button id="AddPostButton"><a href="posting.php">Add Post</a></button>
