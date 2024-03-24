@@ -30,7 +30,7 @@
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 if(!is_null($row)){
-                    echo "<div><h2> Hello ". $row['Username'] . "!</h2></div>
+                    echo "<div id=\"user\"><a href=\"userpage-posts.php\">Hello ". $row['Username'] . "!</a></div>
                     <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
                 }else{
                     echo "failed to get user";
@@ -66,8 +66,6 @@
                 <ul>
                     <li><a href=\"userpage-posts.php\">Posts</a></li>
                     <li><a href=\"userpage-comments.php\">Comments</a></li>
-                    <li><a href=\"#\">Upvoted</a></li>
-                    <li><a href=\"#\">Downvoted</a></li>
                   </ul>
             </nav>
         </div>
@@ -77,9 +75,9 @@
             <div class=\"profile-pic\">
             <img src=\"showImage.php?user=". $row['Username'] . "\" alt=\"user-pic\">
             </div>
-            <h3>u/" . $row['Username'] . "</h3>
+            <h3>" . $row['Username'] . "</h3>
         </div>
-        <p>Datte of Birth: ". $row['DateOfBirth'] . "</p>
+        <p>Date of Birth: ". $row['DateOfBirth'] . "</p>
     </div>";
             }
         }

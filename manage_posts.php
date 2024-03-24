@@ -29,25 +29,26 @@
     <div id="main">
         <div class="subtitle">All Posts</div>
         <?php
-             $sql = "SELECT * FROM Post";
-             $result = mysqli_query($con, $sql);
-             if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)){
-                    echo
-                    "<div class=\"entry2\">
-                    <div>
-                        <div class=\"heading\">". $row['Subforum'] . " - " . $row['DateTime'] ."</div>
-                        <div class=\"username\">" . $row['Username'] . "</div>
-                        <div class=\"title\">" . $row['Title'] . "</div>
-                        <p>". $row['Description'] . "</p>
-                    </div>
-                    <button id=\"edit\" onclick=\"editPost(" . $row['PostId'] . ")\">Edit</button>
-                    <button id=\"delete\" onclick=\"deletePost(" . $row['PostId'] . ")\">Delete</button>
-                    </div>";
-                }
-             }else{
-                echo "<div class=\"entry2\"> No Posts Found</div>";
-             }
+            $found = false;
+            $sql = "SELECT * FROM Post";
+            $result = mysqli_query($con, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                $found = true;
+                echo
+                "<div class=\"entry2\">
+                <div>
+                    <div class=\"heading\">". $row['Subforum'] . " - " . $row['DateTime'] ."</div>
+                    <div class=\"username\">" . $row['Username'] . "</div>
+                    <div class=\"title\">" . $row['Title'] . "</div>
+                    <p>". $row['Description'] . "</p>
+                </div>
+                <button id=\"edit\" onclick=\"editPost(" . $row['PostId'] . ")\">Edit</button>
+                <button id=\"delete\" onclick=\"deletePost(" . $row['PostId'] . ")\">Delete</button>
+                </div>";
+            }
+            if($found == false){
+                echo "<br><h3> No Posts Found</h3>";
+            }
         ?>
     </div> 
 </body>

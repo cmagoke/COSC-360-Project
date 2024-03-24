@@ -29,11 +29,12 @@
     <div id="enable_main">
         <div class="subtitle">Enabled Users</div>
         <?php
+            $found = false;
             $sql = "SELECT * FROM User";
             $result = mysqli_query($con, $sql);
-            if (mysqli_num_rows($result) > 1) {
                 while($row = mysqli_fetch_assoc($result)){
                     if($row['Disabled'] == false && $row['UserId'] != 1){
+                        $found = true;
                         echo "<div class=\"entry\">
                         <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
                         <div class=\"info\">
@@ -46,19 +47,20 @@
                     </div>";
                     }
                 }
-            }else{
-                //echo "hello";
-                echo "<div class=\"entry\"><div> No Enabled Users </div></div>";
-            }
+                if($found == false){
+                    echo "<br><h3> No Enabled Users </h3>";
+                }
         ?>
     </div> 
     <div id="disable_main">
         <div class="subtitle">Disabled Users</div>
         <?php
+            $found = false;
             $sql = "SELECT * FROM User";
             $result = mysqli_query($con, $sql);
             while($row = mysqli_fetch_assoc($result)){
                 if($row['Disabled'] == true && $row['UserId'] != 1){
+                    $found = true;
                     echo "<div class=\"entry\">
                     <div class=\"profile\"><img src=\"showImage.php?user=" . $row['Username'] . "\"></div>
                     <div class=\"info\">
@@ -70,6 +72,9 @@
                     <button id=\"enable\" onclick=\"enable(" . $row['UserId'] . ")\">Enable</button>
                 </div>";
                 }
+            }
+            if($found == false){
+                echo "<br><h3> No Disabled Users </h3>";
             }
         ?>
     </div> 
