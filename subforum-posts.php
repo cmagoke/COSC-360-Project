@@ -1,8 +1,6 @@
 <?php
  include "db.php";
  session_start();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -47,13 +45,13 @@
     <div id="forumhead">
         <div class="profile-pic">
             <img src="images/calc.jpeg" alt="Profile Picture">
-          </div>
+        </div>
 
-          <div class="subreddit-info">
-          <?php
+        <div class="subreddit-info">
+        <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -64,14 +62,36 @@
                     echo "<span class='subreddit-name'>".$row['Name']."</span>";
                 }
             }
-          ?>
-          </div>
-          <button class="join-button">Join</button>
-        </header>
+        ?>
+        </div>
+
+        <?php
+        if(isset($_SESSION['user']) && isset($_GET['name'])){
+            $forumName = $_GET['name'];
+            $userid = $_SESSION['user'];
+            echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub('".$userid."','".$forumName."')\">Join</button>";
+            //"<button id=\"disable\" onclick=\"disable(" . $row['UserId'] . ")\">Disable</button>"
+            
+        }
+        ?>
+
         <nav class="subreddit-navigation">
           <ul>
-            <li><a href="subforum-posts.php">Posts</a></li>
-            <li><a href="subforum-rules.php">Rules</a></li>
+          <?php
+            if(isset($_GET['name'])){
+                $forumName = $_GET['name'];
+                $sql = "SELECT * FROM subforum WHERE Name = ?;";
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param("s", $forumName);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                if(!is_null($row)){
+                    echo "<li><a href='subforum-posts.php?name=".$row['Name']."'>Posts</a></li>";
+                    echo "<li><a href='subforum-rules.php?name=".$row['Name']."'>Rules</a></li>";
+                }
+            }
+          ?>
           </ul>
         </nav>
         <button id="AddPostButton"><a href="posting.php">Add Post</a></button>
@@ -84,7 +104,7 @@
             <?php
             if(isset($_GET['name'])){
                 $forumName = $_GET['name'];
-                $sql = "SELECT * FROM Subforum WHERE Name = ?;";
+                $sql = "SELECT * FROM subforum WHERE Name = ?;";
                 $stmt = $con->prepare($sql);
                 $stmt->bind_param("s", $forumName);
                 $stmt->execute();
@@ -120,7 +140,7 @@
                             <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
                             <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
                             <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
-                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\" onclick=\"window.location.href='comment.php?id=". $row['PostId'] . "'\"></div>
+                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\"></div>
                             <div class=\"comment_count\">". $row['CommentsNum'] . "</div>
                         </div>
                         </div>";
