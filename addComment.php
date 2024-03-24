@@ -16,7 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
         $stmt = $con->prepare($sql);
         $stmt->bind_param("sssi", $username, $date, $comment, $postid);
         if ($stmt->execute()) {
-            header("Location: single_post.php");
+            $sql2 = "UPDATE POST SET CommentsNum = CommentsNum + 1 WHERE PostId = '$postid'";
+            if (mysqli_query($con, $sql2)) {
+                header("Location: single_post.php");
+             }else{
+                 echo "Failed to update comment number";
+             }
             //echo "success";
             exit();
         } else {

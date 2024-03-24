@@ -195,7 +195,7 @@ session_start();
 
     <div class="rectangle">
 
-      <input type="text" id="comment" name="comment" placeholder="Comement here" class="small-rectangle" />
+      <input type="text" id="comment" name="comment" placeholder="Comment here" class="small-rectangle" />
       <?php
         if(isset($_GET['id'])){
             echo " <input type=\"hidden\" id=\"postid\" name=\"postid\" value=\"" . $_GET['id']. "\" />";
