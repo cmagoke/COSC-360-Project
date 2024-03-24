@@ -85,7 +85,7 @@
                         <div class=\"entry\">
                         <div class=\"heading\" >" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
                         <div class=\"username\">" . $row['Username'] . "</div>
-                        <div class=\"title\" onclick=\"window.location.href='single_post.php'\">" . $row['Title'] . "</div>
+                        <div class=\"title\" onclick=\"window.location.href='single_post.php?id=" . $row['PostId'] . "'\">" . $row['Title'] . "</div>
                         <p>" . $row['Description'] ."</p>
                         <div class=\"vote_comment\">
                             <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>

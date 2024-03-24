@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
         if ($stmt->execute()) {
             $sql2 = "UPDATE POST SET CommentsNum = CommentsNum + 1 WHERE PostId = '$postid'";
             if (mysqli_query($con, $sql2)) {
-                header("Location: single_post.php");
+                header("Location: single_post.php?id=" . $postid);
              }else{
                  echo "Failed to update comment number";
              }
