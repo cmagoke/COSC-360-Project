@@ -110,6 +110,7 @@ li>a{
 #main{
     background-color: white; 
     height: 650px;
+    min-width: 650px;
     margin: 2em;
     padding: 0.3em 1em 0.3em 1em;
     border-radius: 5px;
