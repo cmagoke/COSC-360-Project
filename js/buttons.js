@@ -41,10 +41,18 @@ function editPost(PostId){
 function deletePost(PostId){
     var result = confirm("Are you sure you want to delete this post?")
     if(result){
-        $.post("deletePost.php",{postid: PostId, type: "delete"}, function(response) {
+        $.post("handlePost.php",{postid: PostId, type: "delete"}, function(response) {
             // Handle the response from the server
             console.log(response);
             location.reload();
         });
     }
+}
+
+function joinSub(UserId, SubforumName){
+    console.log(UserId,SubforumName);
+    $.post("handleJoin.php",{userid: UserId, forumName:SubforumName}, function(response){
+        console.log(response);
+    })
+    
 }
