@@ -126,13 +126,10 @@
                 <?php
                 if(isset($_GET['name'])){
                     $forumName = $_GET['name'];
-                    $sql = "SELECT * FROM Subforum WHERE Name = ?";
-                    $stmt = $con->prepare($sql);
-                    $stmt->bind_param("s", $forumName);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
+                    $sql = "SELECT * FROM Subforum WHERE Name = '$forumName'";
+                    $result = mysqli_query($con, $sql);
                     $row = $result->fetch_assoc();
-                    while($row = mysqli_fetch_assoc($result)){
+                    if(!is_null($row)){
                         echo "
                         <div class=\"entry\">
                         <div class=\"heading\" >" . $row['Name'] . "</div>
