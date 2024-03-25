@@ -221,6 +221,10 @@
 .heading, .username, .email, .number{
     color: #1D8A99;
 }
+.sub-name a{
+  text-decoration:none;
+  color: black;
+}
     </style>
   </head>
   <body>
