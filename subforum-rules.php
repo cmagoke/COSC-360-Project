@@ -70,7 +70,16 @@
         if(isset($_SESSION['user']) && isset($_GET['name'])){
             $forumName = $_GET['name'];
             $userid = $_SESSION['user'];
-            echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub(".$userid.",'".$forumName."')\">Join</button>";            
+            $sql = "SELECT * FROM UserSubforum WHERE UserId='$userid' AND SubforumName='$forumName'";
+            $result = mysqli_query($con, $sql);
+            $row = $result->fetch_assoc();
+            if(is_null($row)){
+                echo "<button id=\"joinSub\" class='join-button' onclick=\"joinSub(".$userid.",'".$forumName."')\">Join</button>";
+            }
+            else{
+                echo "<button id=\"leaveSub\" class='join-button' onclick=\"leaveSub(".$userid.",'".$forumName."')\">Unjoin</button>";
+            }
+                        
         }
         ?>
         </header>
