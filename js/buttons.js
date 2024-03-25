@@ -62,6 +62,19 @@ function joinSub(UserId, SubforumName){
     })
     
 }
+function leaveSub(UserId, SubforumName){
+    //console.log(UserId,SubforumName);
+    $.post("handleLeave.php",{userid: UserId, forumName:SubforumName}, function(response){
+        if(response == "not logged"){
+            alert("Please log in first");
+        }
+        if(response == "Left"){
+            alert("Left Subforum");
+            location.reload();
+        }
+    })
+    
+}
 
 function addComment(id,logged){
     if(logged == true){
