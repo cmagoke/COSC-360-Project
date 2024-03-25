@@ -57,6 +57,7 @@ function joinSub(UserId, SubforumName){
         }
         if(response == "Joined"){
             alert("joined");
+            location.reload();
         }
     })
     
