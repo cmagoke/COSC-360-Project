@@ -57,6 +57,11 @@
         right: 10px;
         color: black;
       }
+      .sub-name{
+        margin-left: auto;
+        margin-right:auto;
+        color: black;
+      }
       .title{
       font-size: 1.2em;
       font-weight: bold;
@@ -258,6 +263,7 @@
           $row = $result->fetch_assoc();
           if(!is_null($row)){
             echo " <span class=\"time-stamp\">" . $row['DateTime'] . "</span>
+            <span class=\"sub-name\"><a href=\"subforum-posts.php?name=" . $row['Subforum'] .  "\">" . $row['Subforum'] . "</a></span>
             <span class=\"user-info\">". $row['Username'] ."</span>
             <div class=\"title\">". $row['Title'] ."</div>
             <div class=\"small-rectangle\">
