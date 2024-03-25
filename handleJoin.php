@@ -9,7 +9,7 @@
                 $forumName = $_POST['forumName'];
                 $sql = "INSERT INTO UserSubforum (UserId, SubforumName) VALUES('$userid','$forumName')";
                 if (mysqli_query($con, $sql)) {
-                    $sql2 = "UPDATE Subforum SET NumOfUsers = NumOfUsers + 1";
+                    $sql2 = "UPDATE Subforum SET NumOfUsers = NumOfUsers + 1 WHERE Name='$forumName'";
                     if (mysqli_query($con, $sql2)) {
                         echo "Joined";
                     }
