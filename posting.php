@@ -181,8 +181,13 @@ session_start();
   <form id="postForm" action="addposting.php" method="GET">
     <div class="posting">Posting to
       <select id="subforum" name="subforum">
-        <option value="t/calculus">t/calculus</option>
-        <option value="t/physics">t/physics</option>
+        <?php
+           $sql = "SELECT Name FROM Subforum";
+           $result = mysqli_query($con, $sql);
+           while($row = mysqli_fetch_assoc($result)){
+               echo " <option value=\"" . $row['Name']. "\">" . $row['Name']. "</option>";
+           }
+        ?>
       </select>
     </div>
 

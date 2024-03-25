@@ -93,8 +93,12 @@
           ?>
           </ul>
         </nav>
-        <button id="createPost" onclick="window.location.href='posting.php'">Create Post</button>
-    </div>
+        <?php
+        if(isset($_SESSION['user'])){
+            echo "<button id=\"createPost\" onclick=\"window.location.href='posting.php'\">Create Post</button>";
+        }
+        ?>
+        </div>
     <div id="mainbody">
         <div id="about">
             <div class="subtitle">About Community</div>
