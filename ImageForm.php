@@ -1,5 +1,6 @@
 <?php
  include "db.php";
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,11 +13,32 @@
    <script type="text/javascript" src="js/buttons.js"></script>
 </head>
 <body>
-    <div id="header">
+<div id="header">
         <a href="homepage.php">TextHub</a>
-        <input type="search" placeholder="Search">
-        <button id="login" onclick="window.location.href='signin.php'">Log in</button>
-        <button id="signup" onclick="window.location.href='signup.php'">Sign Up</button>
+        <form action="search.php" method="get">
+            <input type="search" id="search" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+        <?php
+             if(isset($_SESSION['user'])){
+                $userid = $_SESSION['user'];
+                $sql = "SELECT Username FROM User WHERE UserId = ?";
+                $stmt = $con->prepare($sql);
+                $stmt->bind_param("i", $userid);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                if(!is_null($row)){
+                    echo "<div id=\"user\"><a href=\"userpage-posts.php\">Hello ". $row['Username'] . "!</a></div>
+                    <button id=\"logout\" onclick=\"window.location.href='processLogout.php'\">Log Out</button>";
+                }else{
+                    echo "failed to get user";
+                }
+             }else{
+                echo "<button id=\"login\" onclick=\"window.location.href='signin.php'\">Log in</button>
+                <button id=\"signup\" onclick=\"window.location.href='signup.php'\">Sign Up</button>";
+             }
+        ?>
     </div>
     <div id="main">
        
@@ -36,7 +58,7 @@
                 
         ?> 
         <br>
-        <a href="userpage.php">Skip</a>
+        <a href="userpage-posts.php">Skip</a>
     </div> 
 </body>
 </html>

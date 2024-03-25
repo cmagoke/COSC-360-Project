@@ -1,5 +1,6 @@
 <?php
 include "db.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['user'];
@@ -23,8 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("ssssss", $username, $passwordHash, $fullname, $dob, $email, $phone);
             if($stmt->execute()){
                 //echo "inserted";
-                header("Location: ImageForm.php?user=" . $username);
-                exit();
+                $sql = "SELECT UserId FROM User WHERE Username = '$username'";
+                $result = mysqli_query($con, $sql);
+                $row = $result->fetch_assoc();
+                if(!is_null($row)){
+                    $_SESSION['user'] = $row["UserId"];
+                    header("Location: ImageForm.php?user=" . $username);
+                    exit();
+                }
             }else{
                 echo "Error";
             }

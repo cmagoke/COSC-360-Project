@@ -1,5 +1,6 @@
 <?php
 include "db.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $img = $_FILES['pic'];
@@ -12,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->bind_param("sss", $imgContent, $imgType, $username);
         if($stmt->execute()){
             //header("Location: ImageForm.php?user=" . $username);  
-            header("Location: userpage.php");
+            header("Location: userpage-posts.php");
         }else{
             echo "error uploading";
         }
