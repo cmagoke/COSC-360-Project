@@ -46,7 +46,7 @@
     
     <div id="forumhead">
         <div class="profile-pic">
-            <img src="images/calc.jpeg" alt="Profile Picture">
+            <img src="images/text-icon.jpeg" alt="Profile Picture">
           </div>
 
           <div class="subreddit-info">
