@@ -310,3 +310,7 @@ div.info{
 #signup-box{
     background-color: #fff;
 }
+.sub-name a{
+    text-decoration: none;
+    color: #1D8A99;
+}

@@ -44,6 +44,7 @@ session_start();
         <?php
         $found = false;
         $found2 = false;
+        $found3 = false;
         if (isset($_GET['search']) && !empty(trim(($_GET['search'])))) {
             echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
             $searchFor = '%' . $_GET['search'] . '%';
@@ -95,12 +96,28 @@ session_start();
             if($found2 == false){
                 echo "No posts found";
             }
+            echo "<h2>Subforums</h2>";
+            $sql3 = "SELECT * From Subforum WHERE Name LIKE ?";
+            $stmt3 = $con->prepare($sql3);
+            $stmt3->bind_param("s", $searchFor);
+            $stmt3->execute();
+            $result3 = $stmt3->get_result();
+            while($row = $result3->fetch_assoc()){
+                $found3 = true;
+                echo "<div class=\"sub-name\"><a href=\"subforum-posts.php?name=" . $row['Name'] . "\">" . $row['Name'] . "</a></div>
+                <br>";
+            }
+            if($found3 == false){
+                echo "No subforums found";
+            }
         }else{
             echo "<h1>Search results for: ". $_GET['search'] ."</h1>";
             echo "<h2>Users</h2>";
             echo "No users found";
             echo "<h2>Posts</h2>";
             echo "No posts found";
+            echo "<h2>Subforums</h2>";
+            echo "No subforums found";
         }
         ?>
     </div>
