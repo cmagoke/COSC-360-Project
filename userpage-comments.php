@@ -102,9 +102,9 @@
                         <div class=\"heading\" >" . $row['Username'] . " - " . $row['DateTime'] . "</div>
                         <p>" . $row['Description'] ."</p>
                         <div class=\"vote_comment\">
-                            <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
+                            <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['CommentId'] . ",'c')\"></div>
                             <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
-                            <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
+                            <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['CommentId'] . ",'c')\"></div>
                         </div>
                         </div>";
                     }

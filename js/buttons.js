@@ -1,5 +1,5 @@
-function upvote(PostId){
-    $.post("handleVote.php",{postid: PostId, type: "up"}, function(response) {
+function upvote(Id, x){
+    $.post("handleVote.php",{id: Id, type: "up", x:x}, function(response) {
         if(response == "not logged"){
             alert("Please log in first");
         }else{
@@ -8,8 +8,8 @@ function upvote(PostId){
     });
 }
 
-function downvote(PostId){
-    $.post("handleVote.php",{postid: PostId, type: "down"}, function(response) {
+function downvote(Id, x){
+    $.post("handleVote.php",{id: Id, type: "down", x:x}, function(response) {
         if(response == "not logged"){
             alert("Please log in first");
         }else{
@@ -52,10 +52,20 @@ function deletePost(PostId){
 function joinSub(UserId, SubforumName){
     //console.log(UserId,SubforumName);
     $.post("handleJoin.php",{userid: UserId, forumName:SubforumName}, function(response){
-        console.log(response);
+        if(response == "not logged"){
+            alert("Please log in first");
+        }
         if(response == "Joined"){
             alert("joined");
         }
     })
     
+}
+
+function addComment(id,logged){
+    if(logged == true){
+        window.location.href = "comment.php?id=" + id;
+    }else{
+        alert("Please log in first");
+    }
 }

@@ -119,6 +119,7 @@
         </div>
         <div id="main">
                 <?php
+                $found = false;
                 if(isset($_GET['name'])){
                     $forumName = $_GET['name'];
                     $sql = "SELECT * FROM Post WHERE Subforum = ?";
@@ -128,6 +129,7 @@
                     $result = $stmt->get_result();
                     $row = $result->fetch_assoc();
                     while($row = mysqli_fetch_assoc($result)){
+                        $found = true;
                         echo "
                         <div class=\"entry\">
                         <div class=\"heading\" >" . $row['Subforum'] . " - " . $row['DateTime'] . "</div>
@@ -135,21 +137,21 @@
                         <div class=\"title\" onclick=\"window.location.href='single_post.php?id=" . $row['PostId'] . "'\">" . $row['Title'] . "</div>
                         <p>" . $row['Description'] ."</p>
                         <div class=\"vote_comment\">
-                            <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ")\"></div>
+                            <div><img class=\"up_arrow\" src=\"images/up_arrow.jpg\" onclick=\"upvote(". $row['PostId'] . ",'p')\"></div>
                             <div class=\"vote_count\">" . $row['VotesNum'] . "</div>
-                            <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ")\"></div>
-                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\" onclick=\"window.location.href='comment.php?id=". $row['PostId'] . "'\"></div>
+                            <div><img class=\"down_arrow\" src=\"images/down_arrow.jpg\"  onclick=\"downvote(". $row['PostId'] . ",'p')\"></div>
+                            <div><img class=\"comment-icon\" src=\"images/comment_icon.png\" onclick=\"window.location.href='single_post.php?id=". $row['PostId'] . "'\"></div>
                             <div class=\"comment_count\">". $row['CommentsNum'] . "</div>
                         </div>
                         </div>";
+                    }
+                    if($found == false){
+                        echo "<br>No posts yet";
                     }
                     
                 }
                 ?>
         </div>
     </div>  
-    <footer>
-        
-    </footer>
 </body>
 </html>
