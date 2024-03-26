@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
         $stmt = $con->prepare($sql);
         $stmt->bind_param("sssi", $username, $date, $comment, $postid);
         if ($stmt->execute()) {
-            $sql2 = "UPDATE POST SET CommentsNum = CommentsNum + 1 WHERE PostId = ?";
+            $sql2 = "UPDATE Post SET CommentsNum = CommentsNum + 1 WHERE PostId = ?";
             $stmt2 = $con->prepare($sql2);
             $stmt2->bind_param("i", $postid);
             if ($stmt2->execute()) {
