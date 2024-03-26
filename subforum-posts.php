@@ -140,7 +140,6 @@
                     $stmt->bind_param("s", $forumName);
                     $stmt->execute();
                     $result = $stmt->get_result();
-                    $row = $result->fetch_assoc();
                     while($row = mysqli_fetch_assoc($result)){
                         $found = true;
                         echo "
