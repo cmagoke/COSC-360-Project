@@ -16,13 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
         $stmt = $con->prepare($sql);
         $stmt->bind_param("sssi", $username, $date, $comment, $postid);
         if ($stmt->execute()) {
-            $sql2 = "UPDATE POST SET CommentsNum = CommentsNum + 1 WHERE PostId = '$postid'";
-            if (mysqli_query($con, $sql2)) {
+            $sql2 = "UPDATE POST SET CommentsNum = CommentsNum + 1 WHERE PostId = ?";
+            $stmt2 = $con->prepare($sql2);
+            $stmt2->bind_param("i", $postid);
+            if ($stmt2->execute()) {
                 header("Location: single_post.php?id=" . $postid);
-             }else{
-                 echo "Failed to update comment number";
-             }
-            //echo "success";
+            } else {
+                echo "Failed to update comment number";
+            }
             exit();
         } else {
             echo "Error: " . $stmt->error;
