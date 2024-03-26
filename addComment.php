@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
     $username = $row['Username'];
     $date = date("Y-m-d H:i:s");
     $postid = $_POST['postid'];
-    if (isset($comment) && isset($postid)) { // Corrected variable names
+    if (isset($comment) && isset($postid)) {
         $sql = "INSERT INTO Comment (Username, DateTime, Description, PostId) VALUES (? ,?, ?, ?)";
         $stmt = $con->prepare($sql);
         $stmt->bind_param("sssi", $username, $date, $comment, $postid);
