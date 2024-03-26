@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>TextHub</title>
    <link rel="stylesheet" href="css/adminstyles.css" />
+   <script type="text/javascript" src="js/validate.js"></script>
 </head>
 <body>
     <div id="header">
@@ -12,7 +13,7 @@
     </div>
     <div id="main">
         <div class="subtitle">Sign up</div>
-        <form id="signup" action="createUser.php" method="POST">
+        <form id="signup" action="createUser.php" method="POST" onsubmit="return validateForm()">
             <ul>
                 <li>
                     <label>Username:</label>
